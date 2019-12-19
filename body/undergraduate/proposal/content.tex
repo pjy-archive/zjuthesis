@@ -1,0 +1,34 @@
+% Contents
+\cleardoublestylepage{empty}
+\thispagestyle{common}
+\pagestyle{common}
+\setcounter{page}{1}
+
+% FIXME: set as first page if inside `proposal`
+\ifthenelse{\equal{\Period}{proposal}}
+{
+    \setcounter{page}{1}
+}
+{}
+
+\ifthenelse{\equal{\Type}{thesis}}
+{
+    % `thesis` content
+    \inputbody{proposal/review/review}
+    \inputbody{proposal/proposal/proposal}
+    \inputbody{proposal/translation/translation}
+    \inputbody{proposal/original/original}
+}
+{
+    \ifthenelse{\equal{\Type}{design}}
+    {
+        % `design` content
+        \inputbody{proposal/proposal/proposal}
+        \inputbody{proposal/translation/translation}
+        \inputbody{proposal/original/original}
+        \inputbody{proposal/midcheck/midcheck}
+    }
+    {
+        % otherwise, blank
+    }
+}

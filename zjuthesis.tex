@@ -1,0 +1,99 @@
+% Zhejiang University Undergraduate Graduation Thesis/Design Template
+% Author: Zixuan Wang
+% Email : zxwang42 [at] gmail.com
+% Update: https://github.com/TheNetAdmin/zjuthesis/releases
+
+\documentclass[
+    StudentName = 姓名,
+    StudentID   = 学号,
+    AdvisorName = 指导教师,
+    Grade       = 2014,            % only the year, no '级'
+    Major       = 专业,
+    Department  = 学院,
+    Title       = 毕业论文/设计题目,
+    SubmitDate  = 递交日期,
+    MajorFormat = general,
+    Degree      = undergraduate,   % 'undergraduate' or 'graduate'
+    Type        = thesis,          % 'thesis'   or 'design' or 'equal'(only for graduate)
+    Period      = final,           % 'proposal' or 'final'
+    BlindReview = false,           % 'false'    or 'true'
+    Language    = chinese,         % 'chinese'  or 'english'
+    % Below only for 'graduate'
+    GradLevel       = master,      % 'master' or 'doctor'
+    Topic           = 研究方向,
+    ColaboratorName = 合作导师
+]{./config/zjuthesis}
+
+\newcommand{\inputfinal}
+{
+    % Final part
+    \newrefsection
+    \inputpage{final/cover}
+    \inputpage{final/previous}
+    \inputpage{final/toc}
+
+    \cleardoublestylepage{previous}
+    \ifthenelse{\equal{\Type}{design}}
+        {\part{毕业设计}}
+        {\part{毕业论文}}
+    \inputbody{final/content}
+
+    \inputpage{final/post}
+
+    % Proposal part
+    \newrefsection
+    \cleardoublestylepage{empty}
+    \ifthenelse{\equal{\Type}{design}}
+        {\part{毕业设计开题报告}}
+        {\part{毕业论文开题报告}}
+
+    \inputpage{proposal/cover}
+    \inputpage{proposal/previous}
+    \inputbody{proposal/content}
+    \inputpage{proposal/post}
+}
+
+\newcommand{\inputproposal}
+{
+    \inputpage{proposal/cover}
+    \inputpage{proposal/previous}
+    \inputpage{proposal/toc}
+    \inputbody{proposal/content}
+    \inputpage{proposal/post}
+}
+
+\newcommand{\inputgraduate}
+{
+    \inputpage{cover}
+    \inputpage{previous}
+    \inputpage{toc}
+    
+    % Main contents
+    \cleardoublepage
+    \thispagestyle{common}
+    \pagestyle{common}
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+
+    \inputbody{content}
+
+    % Post part
+    \inputbody{post}
+}
+
+\begin{document}
+
+\ifthenelse{\equal{\Degree}{undergraduate}}
+{
+    \ifthenelse{\equal{\Period}{final}}
+    {
+        \inputfinal{}
+    }
+    {
+        \inputproposal{}
+    }
+}
+{
+    \inputgraduate{}
+}
+\end{document}
