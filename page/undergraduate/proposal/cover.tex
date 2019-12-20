@@ -10,16 +10,24 @@
 
 \begin{center}
     \zihao{-1} \heiti \bfseries
-    \ifthenelse{\equal{\Type}{thesis}}
+    \ifthenelse{\equal{\MajorFormat}{isee}} % TODO: better organization
     {
-        本~~科~~生~~毕~~业~~论~~文
+        本~~科~~生~~毕~~业~~论~~文（设计）
         \\ \vskip 24pt
         文献综述和开题报告
     }
     {
-        本~~科~~生~~毕~~业~~设~~计
-        \\ \vskip 24pt
-        开题报告
+        \ifthenelse{\equal{\Type}{thesis}}
+        {
+            本~~科~~生~~毕~~业~~论~~文
+            \\ \vskip 24pt
+            文献综述和开题报告
+        }
+        {
+            本~~科~~生~~毕~~业~~设~~计
+            \\ \vskip 24pt
+            开题报告
+        }
     }
 \end{center}
 
