@@ -23,12 +23,18 @@
     \newcommand{\inputpage}[1]{\input{./page/undergraduate/#1}}
     \newcommand{\inputbody}[1]{\input{./body/undergraduate/#1}}
 
-    \newcommand{\chapternonum}[1]
+    \newcommand{\chapternonum}[2][]
     {
         \phantomsection
-        \addcontentsline{toc}{chapter}{#1}
+        \ifthenelse{\isempty{#1}}
+        {
+            \addcontentsline{toc}{chapter}{#2}
+        }
+        {
+            \addcontentsline{toc}{chapter}{#1}
+        }
         \begin{center}
-            \bfseries \zihao{3} #1
+            \bfseries \zihao{3} #2
         \end{center}
     }
 

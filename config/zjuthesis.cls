@@ -3,6 +3,7 @@
     [Zhejiang University Thesis and Design Template, Zixuan Wang zxwang42@gmail.com]
 
 \RequirePackage{kvoptions}
+\RequirePackage{datetime}
 
 \SetupKeyvalOptions{
     family=zjuthesis,
@@ -15,7 +16,7 @@
 \DeclareStringOption{Major}
 \DeclareStringOption{Department}
 \DeclareStringOption{Title}
-\DeclareStringOption{SubmitDate}
+\DeclareStringOption[\today]{SubmitDate}
 \DeclareStringOption[undergraduate]{Degree}
 \DeclareStringOption[general]{MajorFormat}
 \DeclareStringOption[thesis]{Type}
@@ -47,7 +48,14 @@
         \newcommand{\TitleTypeName}{浙江大学本科生毕业论文}
     }
     {
-        \newcommand{\TitleTypeName}{浙江大学本科生毕业设计}
+        \ifthenelse{\equal{\Type}{design}}
+        {
+            \newcommand{\TitleTypeName}{浙江大学本科生毕业设计}
+        }
+        {
+            \let\TitleTypeName\Type % custom
+            \renewcommand{\Type}{thesis}
+        }
     }
 }
 {
