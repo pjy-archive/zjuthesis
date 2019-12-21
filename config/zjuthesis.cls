@@ -53,7 +53,8 @@
             \newcommand{\TitleTypeName}{浙江大学本科生毕业设计}
         }
         {
-            \newcommand{\TitleTypeName}{\Type} % custom
+            \let\TitleTypeName\Type % custom
+            \renewcommand{\Type}{thesis}
         }
     }
 }
